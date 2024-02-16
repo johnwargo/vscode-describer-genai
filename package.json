@@ -1,0 +1,93 @@
+{
+  "name": "describer-genai",
+  "displayName": "Describer GenAI",
+  "description": "A Visual Studio Code extension that generates a description of an article using Generative AI (GenAI) and ChatGPT and adds it to YAML front matter for the article.",
+  "version": "0.0.1",
+  "author": "John M. Wargo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwargo/vscode-describer-genai"
+  },
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "describer-genai.generate",
+        "title": "Generate Description"
+      },
+      {
+        "command": "describer-genai.config",
+        "title": "Open Describer Settings"
+      }
+    ],
+    "configuration": {
+      "title": "Describer GenAI",
+      "properties": {
+        "describer-genai.apiKey": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Create an account and request a ChatGPT API key from [OpenAI](https://openai.com)."
+        },
+        "describer-genai.targetProperty": {
+          "type": "string",
+          "default": "description",
+          "description": "The name of the YAML front matter property to use for the description."
+        },
+        "describer-genai.enableGeneratedFlag": {
+          "type": "boolean",
+          "default": "false",
+          "markdowndescription": "When enabled, adds a `generated` property to the YAML front matter with a value of `true`."
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "describer-genai.generate",
+          "group": "1_modification"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "when": "resourceLangId == markdown",
+          "command": "describer-genai.generate",
+          "group": "1_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "publish": "vsce package && vsce publish"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "openai": "^4.19.0",
+    "yaml": "^2.3.4"
+  }
+}
