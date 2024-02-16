@@ -34,7 +34,7 @@ You must configure the extension before you can use it; the extension requires a
 
 The Settings page for the extension will open as shown below. The only configuration setting you must provide is the ChatGPT API key. 
 
-![Describer Settings Window](https://github.com/johnwargo/vscode-describer-genai/blob/main/genai/images/describer-settings.png)
+![Describer Settings Window](https://github.com/johnwargo/vscode-describer-genai/blob/main/images/describer-settings.png)
 
 The following table describes the configuration options.
 
