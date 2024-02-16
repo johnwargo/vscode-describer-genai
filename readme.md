@@ -40,7 +40,7 @@ The following table describes the configuration options.
 
 | Configuration Option  | Description |
 | --------------------- | ----------- |
-| API Key               | Populate this property with a valid ChatGPT API key; the extension cannot generate descriptions without access to the API. To obtain an API Key refer to [How can I access the ChatGPT API?]( https://help.openai.com/en/articles/7039783-how-can-i-access-the-chatgpt-api). |
+| API Key               | Populate this property with a valid ChatGPT API key; the extension cannot generate descriptions without access to the API. To obtain an API Key refer to [How can I access the ChatGPT API?]( https://help.openai.com/en/articles/7039783-how-can-i-access-the-chatgpt-api) |
 | Enable Generated Flag | When you enable this option the extension adds a `generated` property to the front matter and sets its value to `true`. Use this option if you want your site to indicate when a description was generated using GenAI rather than human effort. |
 | Target Property       | By default, the extension writes the generated description to the file's `description` front matter property. To write the description to a different front matter property, enter the property name here. |
 
@@ -50,12 +50,7 @@ To generate a description for an article using the extension, right-click in an 
 
 ![Right-click menu example](https://github.com/johnwargo/vscode-describer-genai/blob/main/images/right-click-menu.png)
 
-The extension offers two commands:
-
-* `generate` grabs the content from the currently open file, asks ChatGPT to summarize it, then writes the summary to the YAML front matter `description` property.
-* `config` opens the configuration settings for the extension.
-
-
+You can also invoke description generation by opening the Visual Studio Code Command Pallette and selecting **Generate Description**.
 
 ***
 
