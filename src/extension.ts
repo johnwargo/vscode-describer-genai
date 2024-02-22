@@ -1,3 +1,4 @@
+// TODO: Add marketplace icon
 // TODO: Add command icons?
 // TODO: add a folder view context menu item for generation
 // TODO: Add max token length configuration setting?
