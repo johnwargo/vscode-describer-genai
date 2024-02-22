@@ -40,7 +40,7 @@ The following table describes the configuration options.
 
 | Configuration Option  | Description |
 | --------------------- | ----------- |
-| API Key               | Populate this property with a valid ChatGPT API key; the extension cannot generate descriptions without access to the API. To obtain an API Key refer to [How can I access the ChatGPT API?](https://help.openai.com/en/articles/7039783-how-can-i-access-the-chatgpt-api) |
+| API Key               | Populate this property with a valid ChatGPT API key; the extension cannot generate descriptions without access to the API. To obtain an API Key refer to [How can I access the ChatGPT API](https://help.openai.com/en/articles/7039783-how-can-i-access-the-chatgpt-api) |
 | Enable Generated Flag | When you enable this option the extension adds a `generated` property to the front matter and sets its value to `true`. Use this option if you want your site to indicate when a description was generated using GenAI rather than human effort. |
 | Target Property       | By default, the extension writes the generated description to the file's `description` front matter property. To write the description to a different front matter property, enter the property name here. |
 
