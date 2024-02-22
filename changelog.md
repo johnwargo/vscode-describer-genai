@@ -1,6 +1,10 @@
 # Change Log
 
-v0.0.1: February 15, 2024
+v0.1.0
+
+Fixed some issues with the readme and `package.json` file.
+
+v0.0.1: February 21, 2024
 
 Initial release.
 
