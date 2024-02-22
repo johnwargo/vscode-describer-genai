@@ -4,6 +4,7 @@
   "description": "A Visual Studio Code extension that generates a description of an article using Generative AI (GenAI) and ChatGPT and adds it to YAML front matter for the article.",
   "version": "0.0.1",
   "publisher": "john-wargo",
+  "pricing": "Free",
   "author": {
     "name": "John M. Wargo",
     "email": "john@johnwargo.com",
