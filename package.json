@@ -2,7 +2,7 @@
   "name": "describer-genai",
   "displayName": "Describer GenAI",
   "description": "A Visual Studio Code extension that generates a description of an article using Generative AI (GenAI) and ChatGPT and adds it to YAML front matter for the article.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "john-wargo",
   "pricing": "Free",
   "author": {
