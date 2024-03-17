@@ -112,7 +112,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			openai.chat.completions.create({ messages: [{ role: 'user', content: prompt }], temperature: 0.2, model: 'gpt-3.5-turbo' })
 				.then((chatCompletion) => {
-					console.timeEnd(timeKey);
+					// console.timeEnd(timeKey);
 					// console.log('Response: ' + chatCompletion.choices[0].message.content);
 					// grab the front matter from the document
 					var YAMLDoc: YAML.Document[] = YAML.parseAllDocuments(theText, { logLevel: 'silent' });
