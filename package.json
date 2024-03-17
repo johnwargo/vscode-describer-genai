@@ -26,11 +26,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "describer-genai.generate",
+        "command": "extension.describer-genai.generate",
         "title": "Generate Description"
       },
       {
-        "command": "describer-genai.config",
+        "command": "extension.describer-genai.config",
         "title": "Open Describer Settings"
       }
     ],
@@ -93,7 +93,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "openai": "^4.19.0",
+    "openai": "^4.29.1",
     "yaml": "^2.3.4"
   }
 }
