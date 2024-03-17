@@ -26,11 +26,11 @@
   "contributes": {
     "commands": [
       {
-        "command": "extension.describer-genai.generate",
+        "command": "describer-genai.generate",
         "title": "Generate Description"
       },
       {
-        "command": "extension.describer-genai.config",
+        "command": "describer-genai.config",
         "title": "Open Describer Settings"
       }
     ],
