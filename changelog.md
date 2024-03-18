@@ -1,5 +1,14 @@
 # Change Log
 
+v0.1.3 - March 18, 2024
+
+Changed format of the image links in `readme.md` to see if I can get them to display in marketplace.
+Changed the contents of the `repository` property in the project's `package.json` file.
+
+v0.1.2
+
+Fixed issue with the project's `.vscodeignore` file. I added the `node_modules` folder to the file and apparently that kept me from being able to load it from Marketplace. 
+
 v0.1.0
 
 Fixed some issues with the readme and `package.json` file.
