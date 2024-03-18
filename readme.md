@@ -30,11 +30,11 @@ Meatloaf kevin andouille turkey. Sausage shank ham hock swine leberkas pastrami 
 
 You must configure the extension before you can use it; the extension requires an active ChatGPT API key to generate descriptions. To configure the extension, open the Visual Studio Code **Command Pallette** and select **Open Describer Settings** as shown in the image below.
 
-![Visual Studio Code Command Pallette](https://github.com/johnwargo/vscode-describer-genai/blob/main/images/command-pallette.png)
+![Visual Studio Code Command Pallette](/images/command-pallette.png)
 
 The Settings page for the extension will open as shown below. The only configuration setting you must provide is the ChatGPT API key. 
 
-![Describer Settings Window](https://github.com/johnwargo/vscode-describer-genai/blob/main/images/describer-settings.png)
+![Describer Settings Window](/images/describer-settings.png)
 
 The following table describes the configuration options.
 
@@ -48,11 +48,10 @@ The following table describes the configuration options.
 
 To generate a description for an article using the extension, right-click in an open file and select **Generate Description**. The extension will click and whir for a while then append the description to the front matter. 
 
-![Right-click menu example](https://github.com/johnwargo/vscode-describer-genai/blob/main/images/right-click-menu.png)
+![Right-click menu example](/images/right-click-menu.png)
 
 You can also invoke description generation by opening the Visual Studio Code Command Pallette and selecting **Generate Description**.
 
 ***
 
 Sample content generated using [Bacon Ipsum](https://baconipsum.com/)
-

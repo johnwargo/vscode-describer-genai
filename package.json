@@ -11,10 +11,7 @@
     "url": "https://johnwargo.com"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/johnwargo/vscode-describer-genai"
-  },
+  "repository": "https://github.com/johnwargo/vscode-describer-genai",
   "engines": {
     "vscode": "^1.84.0"
   },
