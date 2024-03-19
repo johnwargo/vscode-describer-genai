@@ -1,15 +1,20 @@
+/********************************************************************
+* 
+* Describer GenAI Extension
+* by John M. Wargo
+* https://johnwargo.com
+* January, 2024
+* 
+******************************************************************* */
 // TODO: Add marketplace icon
-// TODO: add a folder view context menu item for generation
 // TODO: Add max token length configuration setting
 // TODO: Add command icons?
-
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import { DialogType, doNotify } from './utils';
 
 import * as vscode from 'vscode';
 import OpenAI from 'openai';
 import YAML from 'yaml';
+
+import { DialogType, doNotify } from './utils';
 
 const extensionName = 'describer-genai';
 const extensionTitle = 'Describer GenAI';
@@ -20,28 +25,27 @@ const yamlPatternInclude = /(?<=---[\r\n]).*?(?=[\r\n]---)/s;
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+
 	// ========================================================
 	// Config command
 	// ========================================================
-	// console.log(`Extension ${extensionName} activated`);
+	console.log(`Extension ${extensionName} activated`);
 	const configCmd = `${extensionName}.config`;
 	const configHandler = () => {
-		// vscode.window.showInformationMessage('Configuration handler');
-		// console.log(`${extensionName}: Executing Configuration handler`);
+		console.log(`${extensionName}: Executing Configuration handler`);
 		vscode.commands.executeCommand('workbench.action.openSettings', 'describer-genai.');
 	};
-	// console.log(`Registering command ${configCmd}`);
+	console.log(`Registering command ${configCmd}`);
 	context.subscriptions.push(vscode.commands.registerCommand(configCmd, configHandler));
 
 	// ========================================================
 	// Generate command
 	// ========================================================
-
 	const generateCmd = `${extensionName}.generate`;
 	const generateHandler = () => {
 		var theText: string;
 
-		// console.log(`${extensionName}: Executing Generate handler`);
+		console.log(`${extensionName}: Executing Generate handler`);
 		const config = vscode.workspace.getConfiguration(extensionName);
 		let apiKey: string = config.apiKey;
 		if (!apiKey) {
@@ -49,9 +53,15 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
-		let targetProperty: string = config.targetProperty;
+		let targetProperty: string = config.targetProperty.trim();
+		// do we have a target property? It's required.
 		if (!targetProperty) {
-			doNotify(DialogType.dtError, 'Extension Configuration missing Description Property');
+			doNotify(DialogType.dtError, 'Extension Configuration missing Target Property');
+			return;
+		}
+		// does the target property contain a space?
+		if (targetProperty.indexOf(' ') > 0){
+			doNotify(DialogType.dtError, 'Target Property cannot contain spaces');
 			return;
 		}
 
@@ -101,19 +111,15 @@ export function activate(context: vscode.ExtensionContext) {
 			config: any,
 			customCancellationToken: vscode.CancellationTokenSource
 		) {
-			// console.log('Calling ChatGPT API');
-			// console.time(timeKey);
-
-			// const chatCompletion = await openai.chat.completions.create({
-			// 	messages: [{ role: 'user', content: `With the article content delimited with triple double quote marks """${genText}""", please generate a concise summary of the article using first-person perspective as if I am summarizing it myself` }], model: 'gpt-3.5-turbo',
-			// });
+			console.log('Calling ChatGPT API');
+			console.time(timeKey);
 
 			const prompt = `With the article content delimited with triple double quote marks """${genText}""", generate a concise summary of the article using first-person perspective as if I am summarizing it myself`;
 
 			openai.chat.completions.create({ messages: [{ role: 'user', content: prompt }], temperature: 0.2, model: 'gpt-3.5-turbo' })
 				.then((chatCompletion) => {
-					// console.timeEnd(timeKey);
-					// console.log('Response: ' + chatCompletion.choices[0].message.content);
+					console.timeEnd(timeKey);
+					console.log('Response: ' + chatCompletion.choices[0].message.content);
 					// grab the front matter from the document
 					var YAMLDoc: YAML.Document[] = YAML.parseAllDocuments(theText, { logLevel: 'silent' });
 					// update the ${targetProperty} property with the generated text
@@ -121,7 +127,7 @@ export function activate(context: vscode.ExtensionContext) {
 					props[config.targetProperty] = chatCompletion.choices[0].message.content;
 					// set the Generated flag to the front matter if the user has it enabled
 					if (config.enableGeneratedFlag) {
-						// console.log('Setting generated flag');
+						console.log('Setting generated flag');
 						props['generatedDescription'] = true;
 					}
 					// Write the front matter back to the document
@@ -149,9 +155,9 @@ export function activate(context: vscode.ExtensionContext) {
 					customCancellationToken.cancel();
 					if (err instanceof OpenAI.APIError) {
 						doNotify(DialogType.dtError, `${err.name}:  ${err.message}`);
-						// console.log(err.status); // 400
-						// console.log(err.name); // BadRequestError
-						// console.dir(err.headers); // {server: 'nginx', ...}
+						console.log(err.status); // 400
+						console.log(err.name); // BadRequestError
+						console.dir(err.headers); // {server: 'nginx', ...}
 					} else {
 						doNotify(DialogType.dtError, `Error: ${err.message}`);
 					}
@@ -173,7 +179,7 @@ export function activate(context: vscode.ExtensionContext) {
 					// setup a process to handle progress bar cancellation					
 					var customCancellationToken: vscode.CancellationTokenSource | null = new vscode.CancellationTokenSource();
 					customCancellationToken.token.onCancellationRequested(() => {
-						// console.log('Clearing progress bar');
+						console.log('Clearing progress bar');
 						interval = clearInterval(interval);
 						customCancellationToken?.dispose();
 						customCancellationToken = null;
@@ -181,11 +187,10 @@ export function activate(context: vscode.ExtensionContext) {
 						return;
 					});
 					// start description generation
-					// console.log('Starting ChatGPT generation');
+					console.log('Starting ChatGPT generation');
 					runCompletion(editor, config, customCancellationToken);
 					var loopCounter = 0;
 					interval = setInterval(() => {
-						// console.log('Waiting');
 						loopCounter++;	//increment the loop counter
 						if (loopCounter > 5) { loopCounter = 1; }	// reset the loop counter
 						progress.report({ message: 'working' + '.'.repeat(loopCounter) });
@@ -195,11 +200,11 @@ export function activate(context: vscode.ExtensionContext) {
 		// --------------------------------------------------------
 
 	};
-	// console.log(`Registering command ${generateCmd}`);
+	console.log(`Registering command ${generateCmd}`);
 	context.subscriptions.push(vscode.commands.registerCommand(generateCmd, generateHandler));
 }
 
 // This method is called when your extension is deactivated
-// export function deactivate() {
-// 	console.log(`Extension "${extensionName}" deactivated`);
-// }
+export function deactivate() {
+	console.log(`Extension "${extensionName}" deactivated`);
+}

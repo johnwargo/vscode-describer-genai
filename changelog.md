@@ -1,9 +1,14 @@
 # Change Log
 
+v0.1.4 - March 18, 2024
+
+* Added console.log code back.
+* Added check to ensure that the Target Property doesn't contain spaces.
+
 v0.1.3 - March 18, 2024
 
-Changed format of the image links in `readme.md` to see if I can get them to display in marketplace.
-Changed the contents of the `repository` property in the project's `package.json` file.
+* Changed format of the image links in `readme.md` to see if I can get them to display in marketplace.
+* Changed the contents of the `repository` property in the project's `package.json` file.
 
 v0.1.2
 
