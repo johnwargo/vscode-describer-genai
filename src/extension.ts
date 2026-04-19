@@ -116,7 +116,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			const prompt = `With the article content delimited with triple double quote marks """${genText}""", generate a concise summary of the article using first-person perspective as if I am summarizing it myself`;
 
-			openai.chat.completions.create({ messages: [{ role: 'user', content: prompt }], temperature: 0.2, model: 'gpt-3.5-turbo' })
+			openai.chat.completions.create({ messages: [{ role: 'user', content: prompt }], temperature: 0.2, model: 'gpt-5.4-mini' })
 				.then((chatCompletion) => {
 					console.timeEnd(timeKey);
 					console.log('Response: ' + chatCompletion.choices[0].message.content);
