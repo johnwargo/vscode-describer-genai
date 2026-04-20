@@ -9,6 +9,8 @@
 // TODO: Add marketplace icon
 // TODO: Add max token length configuration setting
 // TODO: Add command icons?
+// TODO: Make ChatGPT model configurable
+// TODO: Add support for other genAI platforms (OCI, Google Gemini)
 
 import * as vscode from 'vscode';
 import OpenAI from 'openai';
